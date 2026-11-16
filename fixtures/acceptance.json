@@ -1,0 +1,158 @@
+{
+  "scenario": "多边人工智能治理规则冲突解析图谱",
+  "synthetic": true,
+  "records": [
+    {
+      "record_id": "norm_clause-001",
+      "payload": {
+        "jurisdiction": "jurisdiction-0",
+        "instrument_family": "instrument_family-1",
+        "rule_version": "rule_version-2",
+        "obligation_mode": "obligation_mode-3",
+        "language_code": "language_code-4",
+        "applicability_tier": 21.5,
+        "priority_level": 23.4,
+        "clause_count": 25.3,
+        "unresolved_terms": 27.2,
+        "exception_count": 29.1,
+        "compatibility_rate": 0.58,
+        "review_body": "review_body-1"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-002",
+      "payload": {
+        "jurisdiction": "jurisdiction-1",
+        "instrument_family": "instrument_family-2",
+        "rule_version": "rule_version-3",
+        "obligation_mode": "obligation_mode-4",
+        "language_code": "language_code-0",
+        "applicability_tier": 25.2,
+        "priority_level": 27.1,
+        "clause_count": 29.0,
+        "unresolved_terms": 30.9,
+        "exception_count": 32.8,
+        "compatibility_rate": 0.69,
+        "review_body": "review_body-2"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-003",
+      "payload": {
+        "jurisdiction": "jurisdiction-2",
+        "instrument_family": "instrument_family-3",
+        "rule_version": "rule_version-4",
+        "obligation_mode": "obligation_mode-0",
+        "language_code": "language_code-1",
+        "applicability_tier": 28.9,
+        "priority_level": 30.8,
+        "clause_count": 32.7,
+        "unresolved_terms": 34.6,
+        "exception_count": 36.5,
+        "compatibility_rate": 0.8,
+        "review_body": "review_body-3"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-004",
+      "payload": {
+        "jurisdiction": "jurisdiction-3",
+        "instrument_family": "instrument_family-4",
+        "rule_version": "rule_version-0",
+        "obligation_mode": "obligation_mode-1",
+        "language_code": "language_code-2",
+        "applicability_tier": 32.6,
+        "priority_level": 34.5,
+        "clause_count": 36.4,
+        "unresolved_terms": 38.3,
+        "exception_count": 40.2,
+        "compatibility_rate": 0.91,
+        "review_body": "review_body-4"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-005",
+      "payload": {
+        "jurisdiction": "jurisdiction-4",
+        "instrument_family": "instrument_family-0",
+        "rule_version": "rule_version-1",
+        "obligation_mode": "obligation_mode-2",
+        "language_code": "language_code-3",
+        "applicability_tier": 36.3,
+        "priority_level": 38.2,
+        "clause_count": 40.1,
+        "unresolved_terms": 42.0,
+        "exception_count": 43.9,
+        "compatibility_rate": 0.25,
+        "review_body": "review_body-0"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-006",
+      "payload": {
+        "jurisdiction": "jurisdiction-0",
+        "instrument_family": "instrument_family-1",
+        "rule_version": "rule_version-2",
+        "obligation_mode": "obligation_mode-3",
+        "language_code": "language_code-4",
+        "applicability_tier": 40.0,
+        "priority_level": 41.9,
+        "clause_count": 43.8,
+        "unresolved_terms": 45.7,
+        "exception_count": 47.6,
+        "compatibility_rate": 0.36,
+        "review_body": "review_body-1"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-007",
+      "payload": {
+        "jurisdiction": "jurisdiction-1",
+        "instrument_family": "instrument_family-2",
+        "rule_version": "rule_version-3",
+        "obligation_mode": "obligation_mode-4",
+        "language_code": "language_code-0",
+        "applicability_tier": 43.7,
+        "priority_level": 45.6,
+        "clause_count": 47.5,
+        "unresolved_terms": 49.4,
+        "exception_count": 51.3,
+        "compatibility_rate": 0.47,
+        "review_body": "review_body-2"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    },
+    {
+      "record_id": "norm_clause-008",
+      "payload": {
+        "jurisdiction": "jurisdiction-2",
+        "instrument_family": "instrument_family-3",
+        "rule_version": "rule_version-4",
+        "obligation_mode": "obligation_mode-0",
+        "language_code": "language_code-1",
+        "applicability_tier": 47.4,
+        "priority_level": 49.3,
+        "clause_count": 51.2,
+        "unresolved_terms": 53.1,
+        "exception_count": 55.0,
+        "compatibility_rate": 0.58,
+        "review_body": "review_body-3"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-acceptance"
+    }
+  ]
+}
