@@ -1,0 +1,17 @@
+{
+  "scheme_id": "candidate-harmonized",
+  "description": "候选口径：英欧法域与义务措辞归一到欧盟概念，评审机构合并",
+  "aliases": {
+    "uk": "eu",
+    "shall": "must",
+    "london_board": "brussels_board"
+  },
+  "vocabulary": [
+    "eu", "us", "jp",
+    "ai_act", "executive_order",
+    "rv_alpha", "rv_beta",
+    "must", "prohibit",
+    "en", "ja",
+    "brussels_board", "federal_board", "tokyo_board"
+  ]
+}

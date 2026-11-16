@@ -9,6 +9,9 @@ from norms_graph.resolution.dossier_store import Repository
 from norms_graph.analysis.conflict_graph import advance_for_outcome, decide
 from norms_graph.publication.coordination_dossier import export_bundle, verify_bundle
 from norms_graph.semantics.scope_bridge import derive_context
+from norms_graph.sensitivity.mapping_scheme import MappingScheme
+from norms_graph.sensitivity.sensitivity_report import build_sensitivity_report
+from norms_graph.sensitivity.verification import SENSITIVITY_FILE, verify_sensitivity_report
 
 from norms_graph.conflict_signal.conflict_pressure import augment_context
 
@@ -89,3 +92,56 @@ def verify(database: str | Path, output: str | Path) -> dict[str, Any]:
     bundle_errors = verify_bundle(output)
     return {"ok": not chain_errors and not bundle_errors, "chain_errors": chain_errors,
             "bundle_errors": bundle_errors, "snapshot": repository.snapshot()}
+
+
+def load_scheme(path: str | Path) -> MappingScheme:
+    try:
+        value = json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ContractError(f"cannot read mapping scheme: {exc}") from exc
+    if not isinstance(value, dict):
+        raise ContractError("mapping scheme root must be an object")
+    return MappingScheme.from_dict(value)
+
+
+def sensitivity(fixture_path: str | Path, baseline_scheme_path: str | Path,
+                candidate_scheme_paths: list[str | Path], output: str | Path) -> dict[str, Any]:
+    """Build a traceable mapping-scheme sensitivity comparison and publish it
+    alongside an existing dossier bundle.
+
+    The same fixture (same rule versions and clause evidence) is projected
+    through the baseline and candidate mapping schemes. The report is written
+    into the dossier output directory, hashed into the manifest, and verified
+    against the published decisions so dossier statistics and clause evidence
+    stay consistent.
+    """
+    fixture = load_fixture(fixture_path)
+    records = records_from_fixture(fixture)
+    baseline = load_scheme(baseline_scheme_path)
+    candidates = [load_scheme(path) for path in candidate_scheme_paths]
+    report = build_sensitivity_report(records, baseline, candidates)
+
+    root = Path(output)
+    if not root.is_dir():
+        raise ContractError("sensitivity output must be an existing dossier directory")
+    manifest_path = root / "manifest.json"
+    if not manifest_path.is_file():
+        raise ContractError("sensitivity analysis requires a published dossier (manifest.json missing)")
+
+    from norms_graph.publication.coordination_dossier import write_json
+
+    report_hash = write_json(root / SENSITIVITY_FILE, report)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest.pop("manifest_hash", None)
+    manifest.setdefault("files", {})[SENSITIVITY_FILE] = report_hash
+    manifest["manifest_hash"] = stable_hash(manifest)
+    write_json(manifest_path, manifest)
+
+    decisions_path = root / "decisions.json"
+    decisions = json.loads(decisions_path.read_text(encoding="utf-8")) if decisions_path.is_file() else None
+    errors = verify_sensitivity_report(report, decisions)
+    return {"ok": not errors, "report": str(root / SENSITIVITY_FILE),
+            "baseline_scheme": baseline.scheme_id,
+            "candidate_schemes": [scheme.scheme_id for scheme in candidates],
+            "rule_catalog_fingerprint": report["rule_catalog_fingerprint"],
+            "comparisons": len(report["comparisons"]), "errors": errors}

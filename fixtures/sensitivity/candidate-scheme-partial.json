@@ -1,0 +1,16 @@
+{
+  "scheme_id": "candidate-partial-glossary",
+  "description": "候选口径（不完整词表）：部分术语尚未解析，验证缺失不会被当成零冲突",
+  "aliases": {
+    "uk": "eu",
+    "shall": "must"
+  },
+  "vocabulary": [
+    "eu", "us",
+    "ai_act", "executive_order",
+    "rv_alpha", "rv_beta",
+    "must", "prohibit",
+    "en", "ja",
+    "brussels_board", "federal_board"
+  ]
+}

@@ -60,7 +60,8 @@ def build_summary(records: list[DomainRecord], decisions: Mapping[str, Decision]
 
 
 def export_bundle(output: str | Path, records: list[DomainRecord], decisions: Mapping[str, Decision],
-                  snapshot: Mapping[str, Any], events: list[dict[str, Any]]) -> dict[str, Any]:
+                  snapshot: Mapping[str, Any], events: list[dict[str, Any]],
+                  sensitivity_report: Mapping[str, Any] | None = None) -> dict[str, Any]:
     root = ensure_output(output)
     summary = build_summary(records, decisions, snapshot)
     record_count = write_records(root / "records.csv", records, decisions)
@@ -71,12 +72,19 @@ def export_bundle(output: str | Path, records: list[DomainRecord], decisions: Ma
     manifest = {"files": {"summary.json": summary_hash, "decisions.json": decision_hash,
                            "audit-events.json": event_hash}, "record_rows": record_count,
                 "rule_rows": rule_count, "created_at": utc_now()}
+    if sensitivity_report is not None:
+        sensitivity_hash = write_json(root / "sensitivity-report.json", sensitivity_report)
+        manifest["files"]["sensitivity-report.json"] = sensitivity_hash
     manifest["manifest_hash"] = stable_hash(manifest)
     write_json(root / "manifest.json", manifest)
     return manifest
 
 
 def verify_bundle(output: str | Path) -> list[str]:
+    # Imported lazily to keep the publication package free of a hard dependency
+    # direction on the sensitivity package at module import time.
+    from norms_graph.sensitivity.verification import verify_sensitivity_bundle
+
     root = Path(output)
     errors: list[str] = []
     manifest_path = root / "manifest.json"
@@ -94,4 +102,8 @@ def verify_bundle(output: str | Path) -> list[str]:
         value = json.loads(path.read_text(encoding="utf-8"))
         if stable_hash(value) != expected:
             errors.append(f"{name} hash mismatch")
+    # Evidence consistency and sensitivity replay checks. These also run for
+    # already-published bundles without a sensitivity report, so legacy dossiers
+    # are re-checked under their original口径.
+    errors.extend(verify_sensitivity_bundle(root))
     return errors

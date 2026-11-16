@@ -1,0 +1,13 @@
+{
+  "scheme_id": "baseline-identity",
+  "description": "基线口径：词汇表覆盖当前案卷全部术语，不做别名归并",
+  "aliases": {},
+  "vocabulary": [
+    "eu", "uk", "us", "jp",
+    "ai_act", "executive_order",
+    "rv_alpha", "rv_beta",
+    "must", "shall", "prohibit",
+    "en", "ja",
+    "brussels_board", "london_board", "federal_board", "tokyo_board"
+  ]
+}

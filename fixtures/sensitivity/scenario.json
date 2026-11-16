@@ -1,0 +1,82 @@
+{
+  "scenario": "映射口径敏感性比较演示案卷",
+  "synthetic": true,
+  "records": [
+    {
+      "record_id": "norm_clause-101",
+      "payload": {
+        "jurisdiction": "eu",
+        "instrument_family": "ai_act",
+        "rule_version": "rv_alpha",
+        "obligation_mode": "must",
+        "language_code": "en",
+        "applicability_tier": 2.0,
+        "priority_level": 4.2,
+        "clause_count": 12.0,
+        "unresolved_terms": 1.0,
+        "exception_count": 1.0,
+        "compatibility_rate": 0.72,
+        "review_body": "brussels_board"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-sensitivity"
+    },
+    {
+      "record_id": "norm_clause-102",
+      "payload": {
+        "jurisdiction": "uk",
+        "instrument_family": "ai_act",
+        "rule_version": "rv_alpha",
+        "obligation_mode": "shall",
+        "language_code": "en",
+        "applicability_tier": 1.0,
+        "priority_level": 3.5,
+        "clause_count": 10.0,
+        "unresolved_terms": 2.0,
+        "exception_count": 1.0,
+        "compatibility_rate": 0.66,
+        "review_body": "london_board"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-sensitivity"
+    },
+    {
+      "record_id": "norm_clause-103",
+      "payload": {
+        "jurisdiction": "us",
+        "instrument_family": "executive_order",
+        "rule_version": "rv_beta",
+        "obligation_mode": "prohibit",
+        "language_code": "en",
+        "applicability_tier": 3.0,
+        "priority_level": 4.8,
+        "clause_count": 16.0,
+        "unresolved_terms": 3.0,
+        "exception_count": 2.0,
+        "compatibility_rate": 0.55,
+        "review_body": "federal_board"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-sensitivity"
+    },
+    {
+      "record_id": "norm_clause-104",
+      "payload": {
+        "jurisdiction": "jp",
+        "instrument_family": "executive_order",
+        "rule_version": "rv_beta",
+        "obligation_mode": "must",
+        "language_code": "ja",
+        "applicability_tier": 2.0,
+        "priority_level": 3.9,
+        "clause_count": 14.0,
+        "unresolved_terms": 5.0,
+        "exception_count": 3.0,
+        "compatibility_rate": 0.48,
+        "review_body": "tokyo_board"
+      },
+      "state": "drafted",
+      "source": "synthetic-local-sensitivity"
+    }
+  ]
+}

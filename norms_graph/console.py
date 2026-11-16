@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Sequence
 
-from norms_graph.coordination_hub import Application, run, verify
+from norms_graph.coordination_hub import Application, run, sensitivity, verify
 
 
 def parser() -> argparse.ArgumentParser:
@@ -18,6 +18,12 @@ def parser() -> argparse.ArgumentParser:
     check = commands.add_parser("verify")
     check.add_argument("--database", required=True)
     check.add_argument("--output", required=True)
+    compare = commands.add_parser("sensitivity")
+    compare.add_argument("--fixture", required=True)
+    compare.add_argument("--baseline-scheme", required=True)
+    compare.add_argument("--candidate-scheme", required=True, action="append",
+                         help="candidate mapping scheme file; repeat to compare several schemes")
+    compare.add_argument("--output", required=True)
     inspect = commands.add_parser("inspect")
     inspect.add_argument("--database", required=True)
     return root
@@ -29,6 +35,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = run(args.fixture, args.database, args.output)
     elif args.command == "verify":
         result = verify(args.database, args.output)
+    elif args.command == "sensitivity":
+        result = sensitivity(args.fixture, args.baseline_scheme, args.candidate_scheme, args.output)
     else:
         result = Application(args.database).inspect()
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))
